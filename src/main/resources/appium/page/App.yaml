@@ -1,0 +1,9 @@
+toSearch:
+    step:
+        - id: "tv_search"
+
+toStock:
+    step:
+        - xpath: "//*[contains(@resource-id,'tab_name') and @text='行情']"
+
+

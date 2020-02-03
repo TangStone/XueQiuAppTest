@@ -1,0 +1,5 @@
+SearchAlibaba:
+  step:
+    - id: "search_input_text"
+      send: "alibaba"
+    - id: "name"

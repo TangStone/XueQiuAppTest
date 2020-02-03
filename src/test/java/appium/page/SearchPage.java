@@ -6,14 +6,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
+
 public class SearchPage extends BasePage{
     private By inputBox = By.id("com.xueqiu.android:id/search_input_text");
 
-    public SearchPage SearchAlibaba(String str) {
-        MobileElement el2 = (MobileElement) findElement(inputBox);
-        el2.sendKeys(str);
-        new WebDriverWait(driver,30).until(ExpectedConditions.visibilityOfElementLocated(By.id("com.xueqiu.android:id/name")));
-        findElement(By.id("com.xueqiu.android:id/name")).click();
+    public SearchPage SearchAlibaba(String str)  {
+//        MobileElement el2 = (MobileElement) findElement(inputBox);
+//        el2.sendKeys(str);
+//        new WebDriverWait(driver,30).until(ExpectedConditions.visibilityOfElementLocated(By.id("com.xueqiu.android:id/name")));
+//        findElement(By.id("com.xueqiu.android:id/name")).click();
+        parseSteps("SearchAlibaba");
         return this;
     }
 

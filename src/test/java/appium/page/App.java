@@ -26,7 +26,7 @@ public class App extends BasePage{
         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        new WebDriverWait(driver,30).until(x->{
+        new WebDriverWait(driver,40).until(x->{
             System.out.println(System.currentTimeMillis());
             String xml = driver.getPageSource();
             Boolean exist =  xml.contains("home_search")||xml.contains("image_cancel");
@@ -38,13 +38,15 @@ public class App extends BasePage{
 
 
     public static SearchPage toSearch(){
-        findElement(By.id("com.xueqiu.android:id/tv_search")).click();
+        //findElement(By.id("com.xueqiu.android:id/tv_search")).click();
+        parseSteps("toSearch","/appium/page/App.yaml");
         return new SearchPage();
     }
 
     public static StockPage toStock(){
         new WebDriverWait(driver,400).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@resource-id, 'tab_name') and @text='行情']")));
-        findElement(By.xpath("//*[contains(@resource-id,'tab_name') and @text='行情']")).click();
+        //findElement(By.xpath("//*[contains(@resource-id,'tab_name') and @text='行情']")).click();
+        parseSteps("toStock","/appium/page/App.yaml");
         return new StockPage();
     }
 }

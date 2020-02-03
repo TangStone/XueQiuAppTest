@@ -10,11 +10,12 @@ import java.util.List;
 
 public class StockPage extends BasePage{
     public StockPage cancelAllAttention(){
-            findElement(By.id("com.xueqiu.android:id/edit_group")).click();
-            findElement(By.id("com.xueqiu.android:id/check_all")).click();
-            findElement(By.id("com.xueqiu.android:id/cancel_follow")).click();
-            findElement(By.id("com.xueqiu.android:id/tv_right")).click();
-            findElement(By.id("com.xueqiu.android:id/action_close")).click();
+//            findElement(By.id("com.xueqiu.android:id/edit_group")).click();
+//            findElement(By.id("com.xueqiu.android:id/check_all")).click();
+//            findElement(By.id("com.xueqiu.android:id/cancel_follow")).click();
+//            findElement(By.id("com.xueqiu.android:id/tv_right")).click();
+//            findElement(By.id("com.xueqiu.android:id/action_close")).click();
+            parseSteps("cancelAllAttention");
             return this;
     }
 
