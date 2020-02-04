@@ -14,9 +14,30 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BasePage {
     static protected AndroidDriver<WebElement> driver;
+
+    public static HashMap<String, Object> getParams() {
+        return params;
+    }
+
+    public static void setParams(HashMap<String, Object> params) {
+        BasePage.params = params;
+    }
+
+    static private HashMap<String,Object> params = new HashMap<>();
+
+    public static HashMap<String, Object> getResult() {
+        return result;
+    }
+
+    public static void setResult(HashMap<String, Object> result) {
+        BasePage.result = result;
+    }
+
+    private static HashMap<String,Object> result = new HashMap<>();
 
     public static WebElement findElement(By by){
         try {
@@ -60,7 +81,7 @@ public class BasePage {
     }
 
 
-    public void parseSteps(String method){
+    public void parseSteps(){
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         TypeReference<HashMap<String,TestCaseSteps>> typeRefer = new TypeReference<HashMap<String,TestCaseSteps>>(){};
 
@@ -70,22 +91,23 @@ public class BasePage {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(testCase.get(method));
+        String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+        System.out.println(method);
         TestCaseSteps testCaseSteps = testCase.get(method);
         parseSteps(testCaseSteps);
     }
 
-    public static void parseSteps(String method,String path){
+    public static void parseSteps(String path){
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         TypeReference<HashMap<String,TestCaseSteps>> typeRefer = new TypeReference<HashMap<String,TestCaseSteps>>(){};
-        System.out.println(path);
+        String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+        System.out.println(method);
         HashMap<String,TestCaseSteps> testCase = null;
         try {
             testCase = mapper.readValue(BasePage.class.getResource(path),typeRefer);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(testCase.get(method));
         TestCaseSteps testCaseSteps = testCase.get(method);
         parseSteps(testCaseSteps);
     }
@@ -106,13 +128,20 @@ public class BasePage {
                 element = findElement(By.id(steps.get("aid")));
             }
 
-            if(steps.get("send") != null){
-                element.sendKeys(steps.get("send"));
+            String send = steps.get("send");
+            if(send != null){
+               for(Map.Entry<String,Object> entry:params.entrySet()){
+                   String matcher = "${" + entry.getKey() + "}";
+                   if(send.contains(matcher)){
+                       send = send.replace(matcher,entry.getValue().toString());
+                   }
+
+               }
+                element.sendKeys(send);
             }else if(steps.get("attribute") != null){
-                element.getAttribute(steps.get("send"));
-            } else if(steps.get("text") != null){
-                element.getText();
-            }else{
+                String str = element.getAttribute(steps.get("attribute"));
+                getResult().put(steps.get("attribute"),str);
+            } else{
                 element.click();
             }
         });

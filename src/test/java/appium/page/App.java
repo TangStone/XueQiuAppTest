@@ -39,14 +39,14 @@ public class App extends BasePage{
 
     public static SearchPage toSearch(){
         //findElement(By.id("com.xueqiu.android:id/tv_search")).click();
-        parseSteps("toSearch","/appium/page/App.yaml");
+        parseSteps("/appium/page/App.yaml");
         return new SearchPage();
     }
 
     public static StockPage toStock(){
         new WebDriverWait(driver,400).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@resource-id, 'tab_name') and @text='行情']")));
         //findElement(By.xpath("//*[contains(@resource-id,'tab_name') and @text='行情']")).click();
-        parseSteps("toStock","/appium/page/App.yaml");
+        parseSteps("/appium/page/App.yaml");
         return new StockPage();
     }
 }

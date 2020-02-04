@@ -15,7 +15,7 @@ public class StockPage extends BasePage{
 //            findElement(By.id("com.xueqiu.android:id/cancel_follow")).click();
 //            findElement(By.id("com.xueqiu.android:id/tv_right")).click();
 //            findElement(By.id("com.xueqiu.android:id/action_close")).click();
-            parseSteps("cancelAllAttention");
+            parseSteps();
             return this;
     }
 
