@@ -1,0 +1,40 @@
+{
+  "errcode": 0,
+  "errmsg": "ok",
+  "userid": "{{userid}}",
+  "name": "{{name}}",
+  "department": [
+    2
+  ],
+  "position": "shouqianjingli",
+  "mobile": "{{mobile}}",
+  "gender": "1",
+  "email": "{{mobile}}@163.com",
+  "avatar": "",
+  "status": 4,
+  "isleader": 0,
+  "extattr": {
+    "attrs": [
+
+    ]
+  },
+  "telephone": "045129834",
+  "enable": 1,
+  "hide_mobile": 0,
+  "order": [
+    4096
+  ],
+  "external_profile": {
+    "external_attr": [
+
+    ],
+    "external_corp_name": ""
+  },
+  "qr_code": "https://open.work.weixin.qq.com/wwopen/userQRCode?vcode=vceac862ada542c1de",
+  "alias": "唐老鸭",
+  "is_leader_in_dept": [
+    0
+  ],
+  "address": "北京市昌平区回龙观",
+  "thumb_avatar": ""
+}

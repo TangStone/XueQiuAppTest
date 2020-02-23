@@ -56,6 +56,21 @@
             <version>2.9.9</version>
         </dependency>
 
+<!--        接口测试框架-->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>4.1.2</version>
+            <scope>test</scope>
+        </dependency>
+
+<!--        接口数据模板-->
+        <dependency>
+            <groupId>com.github.spullara.mustache.java</groupId>
+            <artifactId>compiler</artifactId>
+            <version>0.9.6</version>
+        </dependency>
+
 
         <dependency>
             <groupId>io.appium</groupId>

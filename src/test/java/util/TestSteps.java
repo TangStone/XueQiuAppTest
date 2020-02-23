@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -41,4 +42,12 @@ public class TestSteps {
         BasePage basePage = new BasePage();
         basePage.parseSteps("SearchAlibaba");
     }
+
+    @Test
+    public void demo() throws MalformedURLException {
+        App.Start();
+        BasePage.findElement(By.xpath("//*[contains(@resource-id,'tab_name') and @text='行情']")).click();
+    }
+
+
 }
