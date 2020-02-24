@@ -3,6 +3,7 @@ package server.user.testcase;
 import org.junit.jupiter.api.Test;
 import server.user.api.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -53,6 +54,19 @@ public class TestUser {
         String userid = "tanglei1582377193393";
         user.updataUser(userid,data).then().body("errcode",equalTo(0));
         user.getUserInfo(userid).then().body("name",equalTo("zhangsan"));
+
+    }
+
+    @Test
+    public void simplelist(){
+        user.simplelist(2,false).then().body("errcode",equalTo(0));
+    }
+
+    @Test
+    public void batchdelete(){
+         ArrayList<String> userids = user.simplelist(2,false).then().body("errcode",equalTo(0))
+                .extract().body().path("userlist.userid");
+         user.batchdelete(userids).then().body("errcode",equalTo(0));
 
     }
 }

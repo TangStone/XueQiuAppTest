@@ -15,16 +15,20 @@ import java.util.HashMap;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class User {
+public class UserApi extends BaseApi{
 
     public Response getUserInfo(String userid){
-        return given()
-                .queryParam("userid",userid)
-                .queryParam("access_token", WeChatToken.getInstance().getToken())
-                .when().log().all()
-                .get("https://qyapi.weixin.qq.com/cgi-bin/user/get")
-                .then().body("errcode",equalTo(0)).log().all()
-                .extract().response();
+//        return given()
+//                .queryParam("userid",userid)
+//                .queryParam("access_token", WeChatToken.getInstance().getToken())
+//                .when().log().all()
+//                .get("https://qyapi.weixin.qq.com/cgi-bin/user/get")
+//                .then().body("errcode",equalTo(0)).log().all()
+//                .extract().response();
+        HashMap<String,Object> params= new HashMap<>();
+        params.put("userid",userid);
+        setParam(params);
+        return parseSteps();
 
     }
 
