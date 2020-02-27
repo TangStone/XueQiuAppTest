@@ -1,28 +1,32 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
-class ParamPass2 {
-    public static void main (String[] args)  {
+class YamlJacksonExample {
+
+    public static void main(String[] args) {
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
+        List<HashMap<String,String>> lmap = new ArrayList<>();
 
-        Person person = new Person();
-        person.setAge(20);
-        person.setName("tanglei");
-        person.data.put("tanglei",20);
-        person.data.put("zhangqiang",20);
-        HashMap<String,String> map = new HashMap<>();
-        map.put("wo","ai");
-        person.datadata.put("zhang",map);
-        person.suzu = new int[]{1,2,3};
-
+        HashMap<String,String> map1 = new HashMap<>();
+        HashMap<String,String> map2 = new HashMap<>();
+        map1.put("tang","lei");
+        map1.put("song","lei");
+        map2.put("tang","lei");
+        map2.put("song","lei");
+        lmap.add(map1);
+        lmap.add(map2);
+        TypeReference<List<HashMap<String,String>>> typeReference = new TypeReference<List<HashMap<String, String>>>() {} ;
         String yamlString = null;
         try {
-            yamlString = objectMapper.writeValueAsString(person);
+            yamlString = objectMapper.writeValueAsString(lmap);
             System.out.println(yamlString);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -30,42 +34,12 @@ class ParamPass2 {
         }
 
         try {
-            Person employee2 = objectMapper.readValue(yamlString, Person.class);
-            //System.out.println(employee2.data);
+             lmap = objectMapper.readValue(yamlString, typeReference);
 
             System.out.println("Done");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
-
-
-
-    }
-
-    public void middle(){
-        System.out.println(this.getClass().getResource("server/user/api/user.json").getPath());
     }
 }
-
-class Person{
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String name;
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int age;
-    public HashMap<String,Integer> data = new HashMap<>();
-    public HashMap<String,HashMap<String,String>> datadata = new HashMap<>();
-    public int[] suzu ;
-
-}
-
-
-

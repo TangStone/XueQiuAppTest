@@ -9,6 +9,7 @@ public class TestUserApi {
     UserApi User= new UserApi();
     @Test
     public void geUserInfo(){
+
         String userid = "TangLei";
         User.getUserInfo(userid).then().body("userid",equalTo(userid));
     }
