@@ -10,8 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,7 +42,16 @@ public class TestSteps {
         App.Start();
         App.toSearch();
         BasePage basePage = new BasePage();
-        basePage.parseSteps("SearchAlibaba");
+        basePage.parseSteps();
+    }
+
+    @Test
+    public void Demo(){
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        Arrays.stream(stackTrace).forEach(x->{
+            System.out.println(x.getMethodName());
+        });
+
     }
 
     @Test
