@@ -70,7 +70,13 @@
             <artifactId>compiler</artifactId>
             <version>0.9.6</version>
         </dependency>
-
+<!--        scheme校验-->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>4.1.2</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>io.appium</groupId>
@@ -84,6 +90,8 @@
             <version>3.141.59</version>
         </dependency>
     </dependencies>
+
+
 
     <build>
         <plugins>
